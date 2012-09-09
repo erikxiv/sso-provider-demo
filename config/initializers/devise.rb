@@ -112,7 +112,7 @@ Devise.setup do |config|
   # config.encryptor = :sha512
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = "aaae3bba030d00f7d0fe31efe059a7c65300f2b66a9e9caaa9073cdf7516c625a6e82380cc40a1648ac80baef4d61eb62cc555916414279bbf40a2e2a79b68cb"
+  config.pepper = "abae3bba030d00f7d0fe31efe059a7c65300f2b66a9e9caaa9073cdf7516c625a6e82380cc40a1648ac80baef4d61eb62cc555916414279bbf40a2e2a79b68cb"
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
