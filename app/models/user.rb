@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   before_validation :initialize_fields, :on => :create
 
   devise :token_authenticatable,
-         :timeoutable, :trackable, :rememberable, :omniauthable
+         :timeoutable, :trackable, :rememberable
 
   self.token_authentication_key = "oauth_token"
 
