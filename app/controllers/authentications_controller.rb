@@ -18,10 +18,11 @@ class AuthenticationsController < ApplicationController
         sign_in_and_redirect(:user, user)
       else
         flash[:notice] = "Oops. Unfortunately we failed to register your new account."
+        redirect_to root_path
       end
+    else
+      redirect_to root_path
     end
-
-    redirect_to root_path
   end
   
   def link
