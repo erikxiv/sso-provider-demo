@@ -1,0 +1,22 @@
+<div id="page">
+	<div class="top">
+		Welcome <%= current_user.first_name %>, you are user #<%=current_user.id %> <%= link_to "(Sign out)", "sessions/destroy", :method => :delete %>
+	</div>
+		<% ["twitter", "facebook", "google_oauth2", "linkedin"].each { |provider| 
+			pdata = session["oauth"].andand[provider]
+		%>
+		<div class="provider <%= pdata ? pdata["status"] : "unlinked" %>">
+			<%= link_to image_tag("jurgen_appelo_#{provider}.png", :alt => provider, :class => "provider"), "/auth/#{provider}" %>
+			<ul>
+				<li><%= pdata ? (pdata["status"]=="active" ? "Logged in" : "Not logged in") : "Not linked" %></li>
+				<li><%= pdata.andand["first_name"] %> <%= pdata.andand["last_name"] %></li>
+				<li><%= pdata.andand["email"] %></li>
+			</ul>
+		</div>
+		<% } %>
+<div id="footer">
+Thanks to <%= link_to "Jurgen Appelo","http://www.jurgenappelo.com" %> for the icons,
+<%= link_to "Plataformatec et al","https://github.com/plataformatec/devise"%> for Devise,
+<%= link_to "Intridea","https://github.com/intridea/omniauth"%> for OmniAuth and
+<%= link_to "Josh Software","http://blog.joshsoftware.com/2010/12/16/multiple-applications-with-devise-omniauth-and-single-sign-on/"%> for tying it all together.
+</div>

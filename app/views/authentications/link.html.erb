@@ -1,0 +1,24 @@
+<div id="page">
+	<div class="top">
+		Welcome <%= @user.first_name %>. This seems to be your first time here.<br/>
+		Do you want to <%= link_to "create a new account", new_account_url %> or link your current credentials to an existing account by clicking one of the providers below?
+	</div>
+	<% ["twitter", "facebook", "google_oauth2", "linkedin"].each { |provider| 
+		pdata = session["oauth"].andand[provider] || @matches.reject{|m| m.provider != provider}.first
+	%>
+	<div class="provider <%= pdata.andand["status"] ? "active" : pdata.andand["email"] ? "inactive" : "unlinked" %>">
+		<%= link_to image_tag("jurgen_appelo_#{provider}.png", :alt => provider, :class => "provider"), "/auth/#{provider}" %>
+		<ul>
+			<li><%= pdata.andand["status"] ? "Active" : pdata.andand["email"] ? "Matching e-mail" : "Not linked" %></li>
+			<li><%= pdata.andand["first_name"] %> <%= pdata.andand["last_name"] %></li>
+			<li><%= pdata.andand["email"] %></li>
+		</ul>
+	</div>
+	<% } %>
+	<div id="footer">
+	Thanks to <%= link_to "Jurgen Appelo","http://www.jurgenappelo.com" %> for the icons,
+	<%= link_to "Plataformatec et al","https://github.com/plataformatec/devise"%> for Devise,
+	<%= link_to "Intridea","https://github.com/intridea/omniauth"%> for OmniAuth and
+	<%= link_to "Josh Software","http://blog.joshsoftware.com/2010/12/16/multiple-applications-with-devise-omniauth-and-single-sign-on/"%> for tying it all together.
+	</div>
+</div>

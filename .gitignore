@@ -1,0 +1,7 @@
+.bundle
+.env
+Procfile
+log/*.log
+tmp/**/*
+config/initializers/omniauth.rb
+db/*.sqlite3
